@@ -17,7 +17,8 @@ export const initTemplate = () => {
 }
 
 
-export const initTimer = (idArr) => {
+export const clearTimer = (idArr) => {
+    console.log(idArr);
     while (idArr.length) {
         clearTimeout(idArr.pop());
     }
@@ -85,9 +86,9 @@ export const flipChoosedCard = (choosedCard) => {
     choosedCard[1].classList.toggle('flipbackcard')
 }
 
-export const renderTimer = (timerId) => {
+export const renderTimer = (timerId,showingTime) => {
     return new Promise((resolve) => {
-        for (let i = 2; i >= 0; i--) {
+        for (let i = showingTime; i >= 0; i--) {
             const id = setTimeout(() => {
                 timer.innerText = i;
                 // =====when time's up, flip over all cards=====
@@ -96,7 +97,7 @@ export const renderTimer = (timerId) => {
                     const allCards = flipAllCards();
                     resolve(allCards)
                 }
-            }, 1000 * (2 - i));
+            }, 1000 * (showingTime - i));
             timerId.push(id)
         }
 

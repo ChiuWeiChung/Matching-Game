@@ -28,6 +28,7 @@ class App {
 
 
     modeBtnsClicker(e) {
+        cardsView.clearTimer(this.timerId);
         let checkArr = ['button--easy', 'button--regular', 'button--hard'];
         let className = e.target.classList.value;
         if (checkArr.includes(className)) this.renderTemplate(className.replace('button--', ''));
@@ -58,14 +59,12 @@ class App {
     }
 
     startBtnClicker = async () => {
-        // =====Init Timer =====
-        cardsView.initTimer(this.timerId);
         // =====Remove modal=====
         cardsView.removeModal(this.startBtnClicker);
         // Flip all cards
         cardsView.flipAllCards();
         // =====Flip all cards back after seconds=====
-        const allCards = await cardsView.renderTimer(this.timerId);
+        const allCards = await cardsView.renderTimer(this.timerId,this.cardsCollection.mode.showingTime);
         // =====Add eventListener to every cards=====
         allCards.forEach(card => card.addEventListener('click', this.cardClicker));
     }
@@ -126,5 +125,4 @@ class App {
 
 }
 
-const app = new App()
-window.test = app;
+const app = new App();

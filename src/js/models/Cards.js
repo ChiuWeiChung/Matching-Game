@@ -1,7 +1,7 @@
 import * as axios from '../axios/axios';
 
 class Cards {
-    mode = { level: "easy", cardsNumber: 6 };
+    mode = { level: "easy", cardsNumber: 6, showingTime: 5 };
     cards = [];
     error = null;
 
@@ -27,8 +27,17 @@ class Cards {
     setMode(mode) {
         this.mode.level = mode;
         this.mode.cardsNumber = 6;
-        if (mode === 'regular') this.mode.cardsNumber = 10;
-        if (mode === 'hard') this.mode.cardsNumber = 30;
+        this.mode.showingTime = 3;
+
+
+        if (mode === 'regular') {
+            this.mode.cardsNumber = 10;
+            this.mode.showingTime = 5;
+        }
+        if (mode === 'hard') {
+            this.mode.cardsNumber = 30;
+            this.mode.showingTime = 10;
+        }
         return this.cards.slice(0, this.mode.cardsNumber);
     }
 
