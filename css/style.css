@@ -220,6 +220,27 @@ header h1 {
     height: auto;
     background-color: lightgray;
     margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer div{
+    margin:1rem;
+}
+
+.footer a {
+    text-decoration: none;
+    color: #4d4bff;
+}
+
+.footer a:active{
+    color: #4d4bff;
+    text-decoration: none;
+}
+
+.footer div img{
+    width: 1rem;
 }
 
 .topic {
