@@ -29,6 +29,7 @@ class App {
 
     modeBtnsClicker(e) {
         cardsView.clearTimer(this.timerId);
+        if(this.cardsCollection.error) return cardsView.renderError(this.cardsCollection.error);
         let checkArr = ['button--easy', 'button--regular', 'button--hard'];
         let className = e.target.classList.value;
         if (checkArr.includes(className)) this.renderTemplate(className.replace('button--', ''));
