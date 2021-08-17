@@ -18,7 +18,6 @@ export const initTemplate = () => {
 
 
 export const clearTimer = (idArr) => {
-    console.log(idArr);
     while (idArr.length) {
         clearTimeout(idArr.pop());
     }
