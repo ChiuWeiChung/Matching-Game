@@ -30,7 +30,7 @@ export const renderCards = collection => {
         let markup = `
             <div class="card-${i + 1} card">
                 <div class="card__side card__side--front">
-                    <img src=${card[0].url} alt="">
+                    <img class="card__img" src=${card[0].url} alt="">
                 </div>
                 <div class="card__side card__side--back">
                 </div>
@@ -38,6 +38,8 @@ export const renderCards = collection => {
             `;
         template.insertAdjacentHTML('beforeend', markup)
     }
+
+    return [...document.querySelectorAll('.card__img')]
 }
 
 export const renderModal = (level, topic) => {
@@ -45,11 +47,11 @@ export const renderModal = (level, topic) => {
         <div class="card__modal">
             <h1>${level.toUpperCase()} MODE</h1>
             <h3>${topic.toUpperCase()} TOPIC</h3>
-            <button class="modal__button startBtn">Start</button>
+            <div class="loader">Loading...</div>
         </div>`;
 
     template.insertAdjacentHTML('afterbegin', markup);
-    return document.querySelector('.startBtn');
+    return document.querySelector('.card__modal');
 }
 
 export const removeModal = (btn) => {
