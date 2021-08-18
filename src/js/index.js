@@ -10,6 +10,7 @@ class App {
     score = 0;
     timerId = [];
     clickedCards = [];
+    imgLoaded = false;
     topic = 'random';
 
     constructor() {
@@ -28,8 +29,7 @@ class App {
 
 
     modeBtnsClicker(e) {
-        cardsView.clearTimer(this.timerId);
-        if(this.cardsCollection.error) return cardsView.renderError(this.cardsCollection.error);
+        if (this.cardsCollection.error) return cardsView.renderError(this.cardsCollection.error);
         let checkArr = ['button--easy', 'button--regular', 'button--hard'];
         let className = e.target.classList.value;
         if (checkArr.includes(className)) this.renderTemplate(className.replace('button--', ''));
@@ -49,14 +49,25 @@ class App {
     renderTemplate = (mode = 'easy') => {
         // =====Initilize UI=====
         cardsView.initTemplate();
+        // =====Init Timer=====
+        cardsView.clearTimer(this.timerId);
         // =====Set mode =====
         const collection = this.cardsCollection.setMode(mode);
         this.score = 0;
+        // =====Render Modal on Template=====
+        const modal = cardsView.renderModal(this.cardsCollection.mode.level, this.topic)
         // =====Render Cards on Template=====
-        cardsView.renderCards(collection);
-        // =====Render Modal in front of Cards=====
-        const startBtn = cardsView.renderModal(this.cardsCollection.mode.level, this.topic)
-        if (startBtn) startBtn.addEventListener('click', this.startBtnClicker)
+        const cardImgs = cardsView.renderCards(collection);
+        // LazyLoading
+        let loaded = 0;
+        cardImgs.forEach(el => el.addEventListener('load', () => {
+            loaded++;
+            if (loaded === this.cardsCollection.mode.cardsNumber) {
+                modal.removeChild(document.querySelector('.loader'));
+                modal.insertAdjacentHTML('beforeend', `<button class="modal__button startBtn">Start</button>`);
+                document.querySelector('.startBtn').addEventListener('click', this.startBtnClicker);
+            }
+        }));
     }
 
     startBtnClicker = async () => {
@@ -65,7 +76,7 @@ class App {
         // Flip all cards
         cardsView.flipAllCards();
         // =====Flip all cards back after seconds=====
-        const allCards = await cardsView.renderTimer(this.timerId,this.cardsCollection.mode.showingTime);
+        const allCards = await cardsView.renderTimer(this.timerId, this.cardsCollection.mode.showingTime);
         // =====Add eventListener to every cards=====
         allCards.forEach(card => card.addEventListener('click', this.cardClicker));
     }
