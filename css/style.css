@@ -122,8 +122,9 @@ header h1 {
 }
 
 .card {
-    width: 8%;
-    aspect-ratio: 4/6;
+    width: 5rem;
+    /* aspect-ratio: 4/6; */
+    height: 8rem;
     margin: 1%;
     perspective: 150rem;
     -moz-perspective: 150rem;
@@ -348,10 +349,7 @@ header h1 {
 
 @media (max-width:450px) {
     html {
-        font-size: 50%;
-    }
-    .card {
-        width: 14%;
+        font-size: 55%;
     }
     .footer {
         flex-direction: column;
