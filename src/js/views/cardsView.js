@@ -45,8 +45,8 @@ export const renderCards = collection => {
 export const renderModal = (level, topic) => {
     let markup = `
         <div class="card__modal">
-            <h1>${level.toUpperCase()} MODE</h1>
-            <h3>${topic.toUpperCase()} TOPIC</h3>
+            <div class="modal__title">${level.toUpperCase()} MODE</div>
+            <div class="modal__desc">${topic.toUpperCase()} TOPIC</div>
             <div class="loader">Loading...</div>
         </div>`;
 
@@ -66,7 +66,7 @@ export const renderWinningModal = () => {
     modal.classList.add('delay');
     modal.classList.toggle('dismiss');
     modal.innerHTML = `
-        <h1>Congratulations!</h1>
+        <div class="modal__title">Congratulations!</div>
         <button class="modal__button restartBtn">Restart <img src='img/loop2.png' style=width:1.2rem></button>
         `
 }

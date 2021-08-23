@@ -26,16 +26,16 @@ class Cards {
 
     setMode(mode) {
         this.mode.level = mode;
-        this.mode.cardsNumber = 6;
-        this.mode.showingTime = 3;
+        this.mode.cardsNumber = 8;
+        this.mode.showingTime = 4;
 
 
         if (mode === 'regular') {
-            this.mode.cardsNumber = 10;
-            this.mode.showingTime = 5;
+            this.mode.cardsNumber = 16;
+            this.mode.showingTime = 6;
         }
         if (mode === 'hard') {
-            this.mode.cardsNumber = 30;
+            this.mode.cardsNumber = 24;
             this.mode.showingTime = 10;
         }
         return this.cards.slice(0, this.mode.cardsNumber);

@@ -82,16 +82,19 @@ class App {
     }
 
     cardClicker = (e) => {
-        if (this.clickedCards.length >= 2) return
-        let choosedCard = [...e.target.parentElement.children]
-        cardsView.flipChoosedCard(choosedCard);
-        this.clickedCards.push(e.target.parentElement);
-        e.target.parentElement.removeEventListener('click', this.cardClicker);
-        // =====Match Situation=====
-        this.checkAnswer()
+        if(e.target.className.includes('card__side--back')){
+            if (this.clickedCards.length >= 2) return
+            let choosedCard = [...e.target.parentElement.children]
+            cardsView.flipChoosedCard(choosedCard);
+            this.clickedCards.push(e.target.parentElement);
+            e.target.parentElement.removeEventListener('click', this.cardClicker);
+            // =====Match Situation=====
+            this.checkAnswer()
+        }
     }
 
     checkAnswer() {
+        // console.log(this.clickedCards);
         if (this.clickedCards.length === 2) {
             let src1 = this.clickedCards[0].children[0].children[0].src;
             let src2 = this.clickedCards[1].children[0].children[0].src;
