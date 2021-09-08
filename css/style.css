@@ -1,5 +1,6 @@
 * {
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -7,7 +8,7 @@ body {
     box-sizing: border-box;
     margin: 0 auto;
     font-family: 'Noto Sans', sans-serif;
-    width: 90%;
+    /* width: 90%; */
     background-color: #2d2d2d;
 }
 
@@ -28,6 +29,8 @@ header h1 {
 
 .container {
     display: flex;
+    width: 80%;
+    margin: 0 auto;
     flex-direction: column;
     justify-content: flex-start;
 }
@@ -44,8 +47,7 @@ header h1 {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 1rem;
-    flex: 1;
+    min-height: 50vh;
     height: auto;
     position: relative;
 }
@@ -109,7 +111,7 @@ header h1 {
 .card {
     width: 5rem;
     height: 8rem;
-    margin: .3rem 1.5rem;
+    margin: .5rem 1rem;
     perspective: 150rem;
     -moz-perspective: 150rem;
     position: relative;
@@ -319,9 +321,13 @@ header h1 {
     }
 }
 
-@media (max-width:600px) {
+@media (max-width:1024px) {
     html {
-        font-size: 75%;
+        font-size: 80%;
+    }
+
+    .container{
+        width: 100%;
     }
     .gameboard {
         padding: 0;
@@ -329,13 +335,26 @@ header h1 {
     .topic {
         flex-direction: column;
     }
+
+    .card{
+        width: 5rem;
+        height: 8rem;
+    }
+
+
+
 }
 
-@media (max-width:450px) {
+@media (max-width:768px) {
     html {
-        font-size: 55%;
+        font-size: 60%;
     }
     .footer {
         flex-direction: column;
+    }
+
+    .card {
+        width: 4rem;
+        height: 6.4rem;
     }
 }
