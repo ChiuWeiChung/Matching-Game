@@ -1,7 +1,7 @@
 import * as axios from '../axios/axios';
 
 class Cards {
-    mode = { level: "easy", cardsNumber: 6, showingTime: 5 };
+    mode = { level: "easy", cardsNumber: 8, showingTime: 5 };
     cards = [];
     error = null;
 
